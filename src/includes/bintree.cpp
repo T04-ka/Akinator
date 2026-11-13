@@ -140,8 +140,6 @@ void tree_dump_in_html(tree_node_t* tree_root_ptr, FILE* html_file, const char* 
 
     tree_dump_in_png(tree_root_ptr, png_name, highlighted_node_ptr PASS_CURRENT_LOCATION);
 
-    fprintf(html_file, " DED_LOH\n");
-    fprintf(html_file, "    < -- Image insert -- >\n");
     fprintf(html_file, "    <img src=\"%s\" alt=\"graph.png\" style=\"max-width: 100%%; height: auto;\"><br>\n", png_name);
 
     fprintf(html_file, "\n    </p>\n");
@@ -432,8 +430,6 @@ tree_node_t* parse_preorder(char** preorder_data_ptr PASS_PREV_DATA) {
         tree_node_elem_t value = __TREE_TYPE_INIT__;
         int nread = 1;
         sscanf(*preorder_data_ptr, "\" %m[^\"]%n", &value, &nread);
-        $s(value);
-        $d(nread);
         *preorder_data_ptr += nread + 1;
         current_tree_node->value = value;
 
