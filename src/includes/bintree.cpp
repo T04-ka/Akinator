@@ -133,7 +133,7 @@ void tree_dump_in_html(tree_node_t* tree_root_ptr, FILE* html_file, const char* 
     fprintf(html_file, "<html>\n");
     fprintf(html_file, "<head>\n");
     fprintf(html_file, "    <meta charset=\"US-ASCII\">\n");
-    fprintf(html_file, "    <title>LIST DUMP</title>\n");
+    fprintf(html_file, "    <title>TREE DUMP</title>\n");
     fprintf(html_file, "</head>\n");
     fprintf(html_file, "<body>\n");
     fprintf(html_file, "    <p style=\"font-family: monospace;\">\n        ");

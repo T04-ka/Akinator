@@ -1,1 +1,1 @@
-("NULL"("man"("not a human"("draw ranger")("fairy"("enchantress")("dark willow")))("can fly"("pudge")("doesn't have wings"("skywrath mage")("grimstroke")))))
+("NULL"("man"("not a human"("draw ranger")("fairy"("has a weapon"("enchantress")("hoodwink"))("dark willow")))("can fly"("a wizard"("pudge")("invoker"))("doesn't have wings"("have legs"("wiper")("skywrath mage"))("grimstroke")))))

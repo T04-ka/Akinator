@@ -4,7 +4,7 @@
 #include <cstdio>
 
 void free_tree_nodes_value(tree_node_t* tree_node_ptr, bool do_recursively PASS_PREV_DATA);
-void game_cicl(tree_node_t* tree_root_ptr);
+int game_cicl(tree_node_t* tree_root_ptr);
 void ask_question(tree_node_t** cur_node_ptr PASS_PREV_DATA);
 void nodes_resplace(tree_node_t* last_character_node, tree_node_elem_t new_character, \
                     tree_node_elem_t question, bool is_last_character_match PASS_PREV_DATA);
@@ -84,9 +84,75 @@ void free_tree_nodes_value(tree_node_t* tree_node_ptr, bool do_recursively PASS_
 //      hwo is this? (charact)
 //      difference in question (quest)
 //
-void game_cicl(tree_node_t* tree_root_ptr) {
+//
+void aki_guess(tree_node_t* tree_root_ptr PASS_PREV_DATA);
+int read_status();
 
-    printf("\nStart Akinator\n");
+
+int game_cicl(tree_node_t* tree_root_ptr) {
+
+    printf("\nStart Akinator\n\n");
+
+    int status = -1;
+
+    int on_exit = 0;
+
+    while (true) {
+
+        switch (status) {
+
+            case -1:
+            {
+                status = read_status();
+                break;
+            }
+
+            case 0:
+            {
+                on_exit = 1;
+                break;
+            }
+
+            case 1:
+            {
+                aki_guess(tree_root_ptr PASS_CURRENT_LOCATION);
+                status = -1;
+                break;
+            }
+
+            default:
+            {
+                printf("Wrong command\n");
+                on_exit = 2;
+            }
+        }
+
+        if (on_exit) {
+
+            break;
+        }
+    }
+
+    printf("\nEnd Akinator\n");
+    return on_exit;
+}
+
+int read_status() {
+
+    printf("\t1. Guess\n" \
+           "\t0. Quit\n");
+
+    int read_status = 0;
+
+    scanf("%d[^\n]", &read_status);
+    clear_buffer(0);
+
+    return read_status;
+}
+
+void aki_guess(tree_node_t* tree_root_ptr PASS_PREV_DATA) {
+
+    ASSERT(tree_root_ptr != NULL);
 
     tree_node_t* cur_node = tree_root_ptr->left;
 
@@ -102,10 +168,7 @@ void game_cicl(tree_node_t* tree_root_ptr) {
             break;
         }
     }
-
-    printf("End Akinator\n");
 }
-
 //---------------------------------------------------------------------------------------------------------------------------------
 
 void nodes_resplace(tree_node_t* last_character_node, tree_node_elem_t new_character, \
