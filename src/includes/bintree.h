@@ -1,7 +1,7 @@
 #ifndef BINTREE_H
 #define BINTREE_H
 
-#define DEBUG
+// #define DEBUG
 
 #include "myformat.cpp"
 

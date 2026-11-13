@@ -86,13 +86,12 @@ void free_tree_nodes_value(tree_node_t* tree_node_ptr, bool do_recursively PASS_
 //
 void game_cicl(tree_node_t* tree_root_ptr) {
 
-    printf("Start Akinator\n");
+    printf("\nStart Akinator\n");
 
     tree_node_t* cur_node = tree_root_ptr->left;
 
     while (true) {
 
-        $p(cur_node);
         if (cur_node->left != NULL) {
 
             ask_question(&cur_node PASS_CURRENT_LOCATION);
@@ -148,16 +147,17 @@ void ask_question(tree_node_t** cur_node_ptr PASS_PREV_DATA) {
 
     printf("%s?(y\\n)\n", cur_node->value);
 
-    int answer = 0;
-    scanf("%d[^\n]", &answer);
-    $d(answer);
+    char answer = 0;
+    scanf("%c[^\n]", &answer);
     clear_buffer(0);
 
-    if (answer == 1) {
+    $c(answer);
+
+    if (answer == 'y') {
 
         *cur_node_ptr = cur_node->right;
     }
-    if (answer == 0) {
+    else if (answer == 'n') {
 
         *cur_node_ptr = cur_node->left;
     }
@@ -178,15 +178,15 @@ void make_guess(tree_node_t** cur_node_ptr PASS_PREV_DATA) {
 
     printf("Is it a %s?(y\\n)\n", cur_node->value);
 
-    int answear = 0;
-    scanf("%d[^\n]", &answear);
+    char answer = 0;
+    scanf("%c[^\n]", &answer);
     clear_buffer(0);
 
-    if (answear == 1) {
+    if (answer == 'y') {
 
         printf("GOL\n");
     }
-    if (answear == 0) {
+    else if (answer == 'n') {
 
         printf("Then who is this?\n");
 
@@ -202,11 +202,11 @@ void make_guess(tree_node_t** cur_node_ptr PASS_PREV_DATA) {
 
         printf("Does %s matches to this definition?(Y\\n)\n", cur_node->value);
 
-        int is_match = 0;
-        scanf("%d[^\n]", &is_match);
+        char is_match = 0;
+        scanf("%c[^\n]", &is_match);
         clear_buffer(0);
 
-        nodes_resplace(cur_node, new_character, question, is_match PASS_CURRENT_LOCATION);
+        nodes_resplace(cur_node, new_character, question, (bool) (is_match - 'n') PASS_CURRENT_LOCATION);
     }
     else {
 
